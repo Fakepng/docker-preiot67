@@ -1,0 +1,532 @@
+version: "3.8"
+
+services:
+  emqx1:
+    image: emqx:5.6.1
+    container_name: emqx1
+    environment:
+      - "EMQX_NODE_NAME=emqx@node1.emqx.io"
+      - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+      - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.emqx.io,emqx@node2.emqx.io]"
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      emqx-bridge:
+        aliases:
+          - node1.emqx.io
+    ports:
+      - 1883:1883
+      - 8083:8083
+      - 8084:8084
+      - 8883:8883
+      - 18083:18083
+    volumes:
+      - ./emqx/emqx1_data:/opt/emqx/data
+  emqx2:
+    image: emqx:5.6.1
+    container_name: emqx2
+    environment:
+      - "EMQX_NODE_NAME=emqx@node2.emqx.io"
+      - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+      - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.emqx.io,emqx@node2.emqx.io]"
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      emqx-bridge:
+        aliases:
+          - node2.emqx.io
+    volumes:
+      - ./emqx/emqx2_data:/opt/emqx/data
+
+  node-red-01:
+    container_name: node-red_01
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-01:/data
+  node-red-02:
+    container_name: node-red_02
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-02:/data
+  node-red-03:
+    container_name: node-red_03
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-03:/data
+  node-red-04:
+    container_name: node-red_04
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-04:/data
+  node-red-05:
+    container_name: node-red_05
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-05:/data
+  node-red-06:
+    container_name: node-red_06
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-06:/data
+  node-red-07:
+    container_name: node-red_07
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-07:/data
+  node-red-08:
+    container_name: node-red_08
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-08:/data
+  node-red-09:
+    container_name: node-red_09
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-09:/data
+  node-red-10:
+    container_name: node-red_10
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-10:/data
+  node-red-11:
+    container_name: node-red_11
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-11:/data
+  node-red-12:
+    container_name: node-red_12
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-12:/data
+  node-red-13:
+    container_name: node-red_13
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-13:/data
+  node-red-14:
+    container_name: node-red_14
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-14:/data
+  node-red-15:
+    container_name: node-red_15
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-15:/data
+  node-red-16:
+    container_name: node-red_16
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-16:/data
+  node-red-17:
+    container_name: node-red_17
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-17:/data
+  node-red-18:
+    container_name: node-red_18
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-18:/data
+  node-red-19:
+    container_name: node-red_19
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-19:/data
+  node-red-20:
+    container_name: node-red_20
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-20:/data
+  node-red-21:
+    container_name: node-red_21
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-21:/data
+  node-red-22:
+    container_name: node-red_22
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-22:/data
+  node-red-23:
+    container_name: node-red_23
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-23:/data
+  node-red-24:
+    container_name: node-red_24
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-24:/data
+  node-red-25:
+    container_name: node-red_25
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-25:/data
+  node-red-26:
+    container_name: node-red_26
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-26:/data
+  node-red-27:
+    container_name: node-red_27
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-27:/data
+  node-red-28:
+    container_name: node-red_28
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-28:/data
+  node-red-29:
+    container_name: node-red_29
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-29:/data
+  node-red-30:
+    container_name: node-red_30
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-30:/data
+  node-red-31:
+    container_name: node-red_31
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-31:/data
+  node-red-32:
+    container_name: node-red_32
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-32:/data
+  node-red-33:
+    container_name: node-red_33
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-33:/data
+  node-red-34:
+    container_name: node-red_34
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-34:/data
+  node-red-35:
+    container_name: node-red_35
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-35:/data
+  node-red-36:
+    container_name: node-red_36
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-36:/data
+  node-red-37:
+    container_name: node-red_37
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-37:/data
+  node-red-38:
+    container_name: node-red_38
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-38:/data
+  node-red-39:
+    container_name: node-red_39
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-39:/data
+  node-red-40:
+    container_name: node-red_40
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-40:/data
+  node-red-41:
+    container_name: node-red_41
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-41:/data
+  node-red-42:
+    container_name: node-red_42
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-42:/data
+  node-red-43:
+    container_name: node-red_43
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-43:/data
+  node-red-44:
+    container_name: node-red_44
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-44:/data
+  node-red-45:
+    container_name: node-red_45
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-45:/data
+  node-red-46:
+    container_name: node-red_46
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-46:/data
+  node-red-47:
+    container_name: node-red_47
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-47:/data
+  node-red-48:
+    container_name: node-red_48
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-48:/data
+  node-red-49:
+    container_name: node-red_49
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-49:/data
+  node-red-50:
+    container_name: node-red_50
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-50:/data
+  node-red-51:
+    container_name: node-red_51
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-51:/data
+  node-red-52:
+    container_name: node-red_52
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-52:/data
+  node-red-53:
+    container_name: node-red_53
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-53:/data
+  node-red-54:
+    container_name: node-red_54
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-54:/data
+  node-red-55:
+    container_name: node-red_55
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-55:/data
+  node-red-56:
+    container_name: node-red_56
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-56:/data
+  node-red-57:
+    container_name: node-red_57
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-57:/data
+  node-red-58:
+    container_name: node-red_58
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-58:/data
+  node-red-59:
+    container_name: node-red_59
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-59:/data
+  node-red-60:
+    container_name: node-red_60
+    image: nodered/node-red
+    user: "uid:gid"
+    networks:
+      - npm_default
+    volumes:
+      - ./node-red-data/node-red-60:/data
+
+networks:
+  npm_default:
+    external: true
+  emqx-bridge:
+    driver: bridge
